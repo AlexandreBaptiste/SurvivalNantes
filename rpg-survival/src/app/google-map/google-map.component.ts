@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+
+import { GeoJSON, FeatureCollection } from '../Interfaces/IGeoJSON';
 import * as mapboxgl from 'mapbox-gl';
 
 @Component({
@@ -17,12 +19,49 @@ export class GoogleMapComponent implements OnInit {
   public _latitude  = 47.2122785;
   public _longitude = -1.5701838; 
   public _zoom = 15;
-
-  source: any;
+  public _layout : mapboxgl.AnyLayout = {
+    'text-field': ['get', 'title'],
+    'text-size':24,
+    'text-offset': [0, 0.5],
+    'icon-image':['get', 'icon'],
+    "icon-size":2,
+    "text-anchor": 'top',
+    "text-font": ['Open Sans Semibold', 'Arial Unicode MS Bold']   
+  };
+  public _kevinData : FeatureCollection;
+  public _friendsSource: any;
 
   constructor() { }
   
   ngOnInit(): void {   
+    this.initializeMap();    
+  }
+
+  addKevin(): void {
+    this._map.addSource('friends',{
+      type: 'geojson',
+      data: {
+        type:"FeatureCollection",
+        features: []
+      }
+    });
+  
+    const markerKévin = new GeoJSON([-1.556835,47.247449], { title: "Julia", icon: "embassy-15" });
+    this._kevinData = new FeatureCollection([markerKévin]);
+    this._friendsSource = this._map.getSource('friends');
+    this._friendsSource.setData(this._kevinData);
+    
+    // Add layer containing all friends (GeoJSON)
+    this._map.addLayer({
+      id:'friends',
+      type:'symbol',
+      source:'friends',
+      layout: this._layout
+    })
+  }
+
+  // Initialize the map
+  private initializeMap(){
 
     // @types/mapbox known bug, as to cast as 'any' to suppress ERROR
     (mapboxgl as any).accessToken = environment.mapbox.accessToken;
@@ -33,48 +72,14 @@ export class GoogleMapComponent implements OnInit {
         center: [this._longitude, this._latitude]
     });
     
+    // Where the player start
     this._homeMarker = new mapboxgl.Marker({
       color: 'red'
     }).setLngLat([-1.571824,47.209102]);
     this._homeMarker.addTo(this._map);
-    
-    
 
     // Add map controls
     this._map.addControl(new mapboxgl.NavigationControl());
     this._map.rotateTo(280,{ duration: 10000});
-
-  }
-
-  addKevin(): void {
-    // Register Source
-    this._map.addSource('points',{
-      type: 'geojson',
-      data: {
-        type:"FeatureCollection",
-        features: [{
-          type:"Feature",
-          properties: {},
-          geometry: {
-            type: "Point",
-            coordinates:  [-1.5701838,47.2122785]
-          }
-        }]
-      }
-    });
-    
-    this._map.addLayer({
-      id:'labels',
-      type:'symbol',
-      source:'points',
-      layout:{
-        'text-field': "Kévin",
-        'text-size':24,
-        'text-offset': [0, 1.5],
-        'icon-image':'embassy-15',
-        "icon-size":2,
-        
-      }
-    })
   }
 }
