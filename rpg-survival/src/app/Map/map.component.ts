@@ -11,27 +11,29 @@ import * as mapboxgl from 'mapbox-gl';
 import * as saver from 'file-saver';
 
 @Component({
-  selector: 'app-google-map',
-  templateUrl: './google-map.component.html',
-  styleUrls: ['./google-map.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
 
 // Docs: https://docs.mapbox.com/mapbox-gl-js/
-export class GoogleMapComponent implements OnInit {
+export class MapComponent implements OnInit {
   
+  // Map
   public map: mapboxgl.Map;
 
   // Markers
-  public homeMarker: mapboxgl.Marker; 
-  public mehdiMarker: mapboxgl.Marker;
+  public homeMarker   : mapboxgl.Marker; 
+  public mehdiMarker  : mapboxgl.Marker;
+  public aymericMarker: mapboxgl.Marker;
 
   // Save
-  public mehdiLngLgSave : mapboxgl.LngLat;
+  public mehdiLngLgSave   : mapboxgl.LngLat;
+  public aymericLngLgSave : mapboxgl.LngLat;
 
   // Layers
-  public friendsData : FeatureCollection;
+  public friendsData  : FeatureCollection;
   public friendsSource: any;
-
   
   constructor() { }
   
@@ -91,29 +93,45 @@ export class GoogleMapComponent implements OnInit {
       color: MapConstantes.markerColor
     }).setLngLat([MapConstantes.homeLongitude,MapConstantes.homeLatitude]);
 
+    // Mehdi's Marker
     this.mehdiMarker = new mapboxgl.Marker({
       color: "yellow",
+      draggable: true
+    }).setLngLat([MapConstantes.NantesLongitude, MapConstantes.NantesLatitude]);
+
+    // Aymeric's Marker
+    this.aymericMarker = new mapboxgl.Marker({
+      color: "green",
       draggable: true
     }).setLngLat([MapConstantes.NantesLongitude, MapConstantes.NantesLatitude]);
 
     // Add markers
     this.homeMarker.addTo(this.map);
     this.mehdiMarker.addTo(this.map);
+    this.aymericMarker.addTo(this.map);
 
     // Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
     this.map.rotateTo(MapConstantes.rotation,{ duration: MapConstantes.rotationDuration});
   }
 
-  public saveGameState(){    
-    let file = new Blob([this.createMehdiSave()], {type: 'text/csv;charset=utf-8'});
-    saver(file,'Mehdi.csv');
+  // Download the marker coordinates at the current state
+  public saveMarkerState(){    
+    let mehdiFile   = new Blob([this.createMehdiSave()], {type: 'text/csv;charset=utf-8'});
+    let aymericFile = new Blob([this.createMehdiSave()], {type: 'text/csv;charset=utf-8'});
+    saver(mehdiFile  , 'MehdiMarker.csv'  );
+    saver(aymericFile, 'AymericMarker.csv');
   }
 
+  // Mehdi's save
   public createMehdiSave(): string {
     this.mehdiLngLgSave = this.mehdiMarker.getLngLat();
-    let lat = this.mehdiLngLgSave.lat;
-    let lng = this.mehdiLngLgSave.lng;
-    return lat + ',' + lng;
+    return this.mehdiLngLgSave.lat + ',' + this.mehdiLngLgSave.lng;
+  }
+
+  // Aymeric's save
+  public createAymericSave(): string {
+    this.aymericLngLgSave = this.aymericMarker.getLngLat();
+    return this.aymericLngLgSave.lat + ',' + this.aymericLngLgSave.lng;
   }
 }
