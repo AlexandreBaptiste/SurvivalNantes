@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { MapConstantes } from '../Constantes/map-constantes';
 import { FriendsConstantes } from '../Constantes/friends-constantes';
+// Known bug
 import * as aymericFile from '../Saves/AymericMarker.json';
 import * as mehdiFile   from '../Saves/MehdiMarker.json';
 import { ISave } from '../Interfaces/ISave';
@@ -112,7 +113,7 @@ export class MapComponent implements OnInit {
 
     // Add map controls
     this.map.addControl(new mapboxgl.FullscreenControl());
-    this.map.rotateTo(MapConstantes.rotation,{ duration: MapConstantes.rotationDuration});
+    //this.map.rotateTo(MapConstantes.rotation,{ duration: MapConstantes.rotationDuration});
   }
 
   // Download the marker coordinates at the current state

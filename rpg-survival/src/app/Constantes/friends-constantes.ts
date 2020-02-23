@@ -11,9 +11,7 @@ export class FriendsConstantes {
     public static juliaLongitude = -1.556835;
 
     /** Maxime */
-    public static maxime = "Maxime";
-    public static maximeLatitude  = 47.247449;
-    public static maximeLongitude = -1.556835;
+    /** Teddy  */
 
     /** Common */
     public static icon = "embassy-15";

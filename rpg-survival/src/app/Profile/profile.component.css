@@ -1,0 +1,223 @@
+@font-face {
+    font-family: "RetroBoldLetPlain";
+    src: url("../../assets/Font/retroboldletplain-1.0.ttf") format('truetype');
+}
+
+.player {
+    height: 600px !important;
+}
+
+.portrait {
+    height: 100%;    
+    display: block;
+}
+
+.progressbar-back {
+    width: 50px;
+    height: 100%;
+    background-color: lightgray;
+    display: inline-block;
+    position: relative;
+    border: 1px solid black ;
+}
+
+.progressbar-hp-front {
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    background-color: #28a745;
+}
+
+.progressbar-stress-front {
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    background-color: #dc3545;    
+}
+
+.first-player-margin {
+    width: 10px;
+    display: inline-block;
+}
+
+.second-player-margin {
+    width: 14px;
+    display: inline-block;
+}
+
+/** Overlay **/
+.overlay {
+    transition: 0.5s ease;
+    opacity: 0;
+    background-color: lightblue;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    border: 0.5px solid blue;
+}
+
+.portrait-overlay .overlay:hover {
+    opacity: 1;
+}
+
+/** ID Card **/
+.signature {
+    width: 300px;
+    height: 65px;
+}
+
+.identity {
+    background-color: lightblue;    
+}
+
+.identity h2 {
+    background-color: blue;
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-bottom: 0.5px solid white;
+}
+
+.identity dt {
+    color: blue;
+    padding-left: 5px;
+}
+
+.identity dd {
+    color: black;
+    font-family: "RetroBoldLetPlain";
+}
+
+.specimen {
+    display: block;
+    background-color: white;
+    color: black;
+    font-size: larger;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+/** Stats **/
+.stats-header {
+    color: white;
+    background-color: blue;
+}
+
+/** https://github.com/volcanioo/Human-Body-Rendering-HTML **/
+
+.human-body {
+    position: relative;
+    height: 500px;
+    display: block;
+    margin: 10px auto;
+}
+
+.human-body svg:hover {
+    cursor: pointer;
+}
+
+/** Adding hover/selected color **/
+.human-body .selected {
+    fill: darkred;
+}
+
+.human-body svg:hover path {
+    fill: darkred;
+}
+
+.human-body svg {
+    position: absolute;
+    left: 50%;
+    fill:black;
+}
+
+.human-body svg#head {
+    margin-left: -28.5px;
+    top: -6px;
+}
+
+.human-body svg#left-shoulder {
+    margin-left: -53.5px;
+    top: 69px;
+}
+
+.human-body svg#right-shoulder {
+    margin-left: 13.5px;
+    top: 69px;
+}
+
+.human-body svg#left-arm {
+    margin-left: -78px;
+    top: 112px;
+}
+
+.human-body svg#right-arm {
+    margin-left: 38px;
+    top: 112px;
+    z-index: 10001;
+}
+
+.human-body svg#chest {
+    margin-left: -43.5px;
+    top: 88px;
+}
+
+.human-body svg#stomach {
+    margin-left: -37.5px;
+    top: 130px;
+}
+
+.human-body svg#left-leg {
+    margin-left: -46.5px;
+    top: 205px;
+    z-index: 9999;
+}
+
+.human-body svg#right-leg {
+    margin-left: 1.5px;
+    top: 205px;
+    z-index: 9999;
+}
+
+.human-body svg#left-hand {
+    margin-left: -102.5px;
+    top: 224px;
+}
+
+.human-body svg#right-hand {
+    margin-left: 66.5px;
+    top: 224px;
+    z-index: 10000;
+}
+
+.human-body svg#left-foot {
+    margin-left: -35.5px;
+    top: 455px;
+}
+
+.human-body svg#right-foot {
+    margin-left: 5.5px;
+    top: 455px;
+}
+
+#area {
+    display: block;
+    width: 100%;
+    clear: both;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-family: Courier New;
+    color: #a5a5a5;
+}
+
+#area #data {
+    color: black;
+}
