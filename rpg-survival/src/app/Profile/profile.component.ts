@@ -26,6 +26,12 @@ export class ProfileComponent implements OnInit {
   // Stress & HP
   hp : number = 100;
   stress : number = 10;
+  hpAymeric : number = 100;
+  stressAymeric : number = 0;
+
+  // Cards
+  mehdiCardOpacity   : number = 0;
+  aymericCardOpacity : number = 0;
 
   constructor() {}
 
@@ -79,9 +85,24 @@ export class ProfileComponent implements OnInit {
     }    
   }
 
-  // Update "HP/STRESS" height
-  updateHpStress(form: NgForm){
+  // Update "HP/STRESS" height for Mehdi
+  updateHpStress(form: NgForm): void {
     this.hp = form.value.hpInput;
     this.stress = form.value.stressInput;
+  }
+
+  // Update "HP/STRESS" height for Aymeric
+  updateHpStressAymeric(form: NgForm): void {
+    this.hpAymeric = form.value.hpInputAymeric;
+    this.stressAymeric = form.value.stressInputAymeric;
+  }
+
+  // Id Card Click
+  manageIdCard(player: string): void {
+    if(player == "mehdi"){
+      this.mehdiCardOpacity = (this.mehdiCardOpacity == 1) ? 0 : 1;
+    } else {
+      this.aymericCardOpacity = (this.aymericCardOpacity == 1) ? 0 : 1;
+    }
   }
 }

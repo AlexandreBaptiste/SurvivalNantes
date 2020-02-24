@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "RetroBoldLetPlain";
-    src: url("../../assets/Font/retroboldletplain-1.0.ttf") format('truetype');
-}
-
 .player {
     height: 600px !important;
 }
@@ -50,7 +45,6 @@
 /** Overlay **/
 .overlay {
     transition: 0.5s ease;
-    opacity: 0;
     background-color: lightblue;
     position: absolute;
     bottom: 0;
@@ -60,10 +54,6 @@
     height: 100%;
     width: 100%;
     border: 0.5px solid blue;
-}
-
-.portrait-overlay .overlay:hover {
-    opacity: 1;
 }
 
 /** ID Card **/
@@ -91,7 +81,6 @@
 
 .identity dd {
     color: black;
-    font-family: "RetroBoldLetPlain";
 }
 
 .specimen {

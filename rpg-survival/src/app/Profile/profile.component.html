@@ -8,9 +8,9 @@
         <!-------------->
         
         <!-- Portrait -->
-        <div class="col-md-auto player portrait-overlay"> 
-            <img class="portrait" src="https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/31100333_1800854186620121_7947967951980724224_n.jpg?_nc_cat=101&_nc_ohc=a1SIZH8r1isAX-sxI6G&_nc_ht=scontent-cdt1-1.xx&oh=73eed1b3aaf2f6e512bead8e6fbd05fe&oe=5EBF0DC3" alt="Mehdi">
-            <div class="overlay">
+        <div class="col-md-auto player portrait-overlay" (click)="manageIdCard('mehdi')"> 
+            <img class="portrait" src="../../assets/Images/Mehdi.jpg" alt="Mehdi">
+            <div class="overlay" [style.opacity]=mehdiCardOpacity>
                 <div class="row no-gutters identity">
 
                     <h2>R É P U B L I Q U E &nbsp;&nbsp;&nbsp; F R A N C A I S E</h2>
@@ -185,17 +185,17 @@
 
             <!-- HP/Stress Inputs -->
             <div class="row no-gutters">
-                <form #hpStressForm="ngForm" (ngSubmit)="updateHpStress(hpStressForm)">
+                <form #hpStressFormAymeric="ngForm" (ngSubmit)="updateHpStressAymeric(hpStressFormAymeric)">
                     <div class="input-group mb-1">                        
-                        <input type="number" class="form-control" id="hpInput" name="hpInput" ngModel required>
+                        <input type="number" class="form-control" id="hpInputAymeric" name="hpInputAymeric" ngModel required>
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="hp-input">HP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="input-group-text" id="hp-input-aymeric">HP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </div>
                     </div>
                     <div class="input-group">                        
-                        <input type="number"  class="form-control" id="stressInput" name="stressInput" ngModel required>
+                        <input type="number"  class="form-control" id="stressInputAymeric" name="stressInputAymeric" ngModel required>
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="stress-input">Stress</span>
+                            <span class="input-group-text" id="stress-input-aymeric">Stress</span>
                         </div>
                     </div>
                     <!-- This button is here only to "map" a submit with ENTERKEY -->
@@ -208,19 +208,19 @@
         <div class="col-md-auto player">            
             <!-- Stress Bar -->
             <div id="stress-back" class="progressbar-back">
-                <div id="stress-front" class="progressbar-stress-front" [style.height.%]="stress"></div>
+                <div id="stress-front" class="progressbar-stress-front" [style.height.%]="stressAymeric"></div>
             </div>
 
             <!-- HP Bar -->
             <div id="hp-back" class="progressbar-back">
-                <div id="hp-front" class="progressbar-hp-front" [style.height.%]="hp"></div>
+                <div id="hp-front" class="progressbar-hp-front" [style.height.%]="hpAymeric"></div>
             </div>
         </div>
 
         <!-- Portrait -->
-        <div class="col-md-auto player portrait-overlay"> 
+        <div class="col-md-auto player portrait-overlay" (click)="manageIdCard('aymeric')"> 
             <img class="portrait" src="../../assets/Images/Aymeric.png" alt="Aymeric">
-            <div class="overlay">
+            <div class="overlay" [style.opacity]=aymericCardOpacity>
                 <div class="row no-gutters identity">
 
                     <h2>R É P U B L I Q U E &nbsp;&nbsp;&nbsp; F R A N C A I S E</h2>
@@ -286,7 +286,7 @@
                             <tr>
                                 <td>60</td>
                                 <td>60</td>
-                                <td>60</td>
+                                <td>70</td>
                                 <td>50</td>
                                 <td>60</td>
                                 <td>60</td>
@@ -302,8 +302,8 @@
                     <dt class="col-md-4">Réfléchi:</dt>
                     <dd class="col-md-8">Peut relancer un jet d'INT loupé</dd>
                     
-                    <dt class="col-md-4">Orientation:</dt>
-                    <dd class="col-md-8">Une fois par jour, sait quel chemin est dangereux</dd>
+                    <dt class="col-md-4">Pourparler:</dt>
+                    <dd class="col-md-8">10% de bonus en INT dans des négociations</dd>
                 </div>
                 
             </div>
