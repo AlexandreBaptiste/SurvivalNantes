@@ -1,19 +1,64 @@
 .player {
-    height: 600px !important;
+    height: 608px !important;
 }
 
 .portrait {
     height: 100%;    
     display: block;
+    border: 1mm ridge black !important;
 }
 
+.input-border {
+    border: 1mm ridge black;
+}
+
+.input-border-stress {
+    border-bottom: 1mm ridge black;
+    border-right: 1mm ridge black;
+    border-left: 1mm ridge black;
+}
+
+.span-border {
+    border-left: 1mm ridge black;
+    border-right: 1mm ridge black;
+}
+
+.span-border-f {
+    border-left: 0.5mm ridge black;
+    border-right: 1mm ridge black;
+}
+
+
+/** Progress bar **/
 .progressbar-back {
     width: 50px;
     height: 100%;
     background-color: lightgray;
     display: inline-block;
     position: relative;
-    border: 1px solid black ;
+    border: 1mm ridge black;
+}
+
+.progressbar-back-stress {
+    width: 50px;
+    height: 100%;
+    background-color: lightgray;
+    display: inline-block;
+    position: relative;
+    border-top: 1mm ridge black;
+    border-bottom: 1mm ridge black;
+    border-right: 1mm ridge black;
+}
+
+.progressbar-back-stress-aymeric {
+    width: 50px;
+    height: 100%;
+    background-color: lightgray;
+    display: inline-block;
+    position: relative;
+    border-top: 1mm ridge black;
+    border-bottom: 1mm ridge black;
+    border-left: 1mm ridge black;
 }
 
 .progressbar-hp-front {
@@ -53,7 +98,8 @@
     right: 0;
     height: 100%;
     width: 100%;
-    border: 0.5px solid blue;
+    border: 1mm ridge blue;
+    margin-left: 0.5px;
 }
 
 /** ID Card **/
@@ -71,32 +117,32 @@
     width: 100%;
     color: white;
     text-align: center;
-    border-bottom: 0.5px solid white;
+    padding-top: 3px;
+    padding-bottom: 10px;
 }
 
 .identity dt {
     color: blue;
-    padding-left: 5px;
+    padding-left: 10px;
 }
 
 .identity dd {
     color: black;
 }
 
-.specimen {
-    display: block;
-    background-color: white;
-    color: black;
-    font-size: larger;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
-}
-
 /** Stats **/
 .stats-header {
     color: white;
     background-color: blue;
+}
+
+/** FA Color **/
+.heartbeat-color {
+    color: darkred;
+}
+
+.heart-color {
+    color: darkgreen;
 }
 
 /** https://github.com/volcanioo/Human-Body-Rendering-HTML **/
@@ -123,8 +169,9 @@
 
 .human-body svg {
     position: absolute;
-    left: 50%;
-    fill:black;
+    left: 50%;    
+    stroke-width: 2px;
+    stroke: darkred;
 }
 
 .human-body svg#head {
@@ -194,19 +241,4 @@
 .human-body svg#right-foot {
     margin-left: 5.5px;
     top: 455px;
-}
-
-#area {
-    display: block;
-    width: 100%;
-    clear: both;
-    padding: 10px;
-    text-align: center;
-    font-size: 25px;
-    font-family: Courier New;
-    color: #a5a5a5;
-}
-
-#area #data {
-    color: black;
 }
