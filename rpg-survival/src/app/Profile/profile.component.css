@@ -145,6 +145,13 @@
     color: darkgreen;
 }
 
+/** Tools **/
+.tools-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 /** https://github.com/volcanioo/Human-Body-Rendering-HTML **/
 
 .human-body {

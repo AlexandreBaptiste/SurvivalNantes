@@ -157,8 +157,35 @@
                 </form>
             </div> 
 
+        </div>    
+
+        <!-- Tools -->
+        <div class="col-md-1 ml-md-auto">
+            <div class="row no-gutters">
+
+                <!-- Alerts -->
+                <div class="alert alert-success alert-dismissible" role="alert" *ngIf="alert">
+                    <strong>{{action}}</strong> {{state}}
+                    <div type="button" class="close" (click)="closeAlert()">
+                      <span>&times;</span>
+                    </div>
+                </div>
+
+                <!-- Panel -->
+                <div class="tools-wrapper btn-group-vertical">
+                    <button class="btn btn-dark btn-lg btn-block" (click)="manageTools()" *ngIf="!toolsDisplay">
+                        <i class="fas fa-chevron-up fa-lg"></i>
+                    </button>                     
+                    <button class="btn btn-dark btn-lg btn-block" (click)="manageTools()" *ngIf="toolsDisplay">
+                        <i class="fas fa-chevron-down fa-lg"></i>
+                    </button> 
+                    <button class="btn btn-dark btn-lg btn-block" (click)="save()"  *ngIf="toolsDisplay">Sauvegarder  </button>
+                    <button class="btn btn-dark btn-lg btn-block" (click)="load()"  *ngIf="toolsDisplay">Charger      </button>
+                    <button class="btn btn-dark btn-lg btn-block" (click)="reset()" *ngIf="toolsDisplay">Réinitialiser</button>
+                </div>                
+            </div>            
         </div>
-        
+
         <!-------------->
         <!-- PLAYER 2 -->
         <!-------------->

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'
+// Do not import @types/file-saver
+import * as saver from 'file-saver';
+// Known bug
+import * as profileFile from '../Saves/ProfileSave.json';
+import { IProfile } from '../Interfaces/IProfile';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-profile',
@@ -45,6 +51,14 @@ export class ProfileComponent implements OnInit {
   // Cards
   mehdiCardOpacity   : number = 0;
   aymericCardOpacity : number = 0;
+
+  // Tools
+  toolsDisplay : boolean = false;
+  loadedData : any;
+  hasBeenSaved : boolean = false;
+  alert : boolean = false;
+  action : string;
+  state : string;
 
   constructor() {}
 
@@ -147,14 +161,24 @@ export class ProfileComponent implements OnInit {
   
   // Update "HP/STRESS" height for Mehdi
   updateHpStress(form: NgForm): void {
-    this.hp = form.value.hpInput;
-    this.stress = form.value.stressInput;
+    if(form.value.hpInput <= 100 && form.value.stressInput <= 100){
+      this.hp = form.value.hpInput;
+      this.stress = form.value.stressInput;
+    } else {
+      this.hp = 100;
+      this.stress = 100;
+    }    
   }
 
   // Update "HP/STRESS" height for Aymeric
   updateHpStressAymeric(form: NgForm): void {
-    this.hpAymeric = form.value.hpInputAymeric;
-    this.stressAymeric = form.value.stressInputAymeric;
+    if(form.value.hpInputAymeric <= 100 && form.value.stressInputAymeric <= 100) {
+      this.hpAymeric = form.value.hpInputAymeric;
+      this.stressAymeric = form.value.stressInputAymeric;
+    } else {
+      this.hpAymeric = 100;
+      this.stressAymeric = 100;
+    }    
   }
 
   // Id Card Click
@@ -164,5 +188,46 @@ export class ProfileComponent implements OnInit {
     } else {
       this.aymericCardOpacity = (this.aymericCardOpacity == 1) ? 0 : 1;
     }
+  }
+
+  // Tools 
+  manageTools(): void {
+    this.toolsDisplay = (this.toolsDisplay) ? false : true;
+  }
+
+  // Save current game state
+  save(): void {
+    let saveString = JSON.stringify({mHP: this.hp, mSS: this.stress, aHP: this.hpAymeric, aSS: this.stressAymeric});
+    let saveFile   = new Blob([saveString],   {type: 'application/json;charset=utf-8'});
+    saver(saveFile, 'ProfileSave.json');
+    this.action = "Sauvegarde";
+    this.state = "réussie";
+    this.alert = true;
+  }
+
+  // Load at the previous game state
+  load(): void {
+    this.action = "Chargement";
+    this.alert = true;
+
+    if(profileFile != null){
+      this.loadedData = (profileFile as any).default;
+      this.hp = this.loadedData.mHP;
+      this.stress = this.loadedData.mSS;
+      this.hpAymeric = this.loadedData.aHP;
+      this.stressAymeric = this.loadedData.aSS;      
+      this.state = "réussi";    
+    } else {
+      this.state = "échoué, merci de vérifier si le fichier existe"
+    }
+  }
+
+  // Reset everything
+  reset(): void {
+    this.state = "En cours de développement..."
+  }
+
+  closeAlert(): void {
+    this.alert = false;
   }
 }
